@@ -1,0 +1,13 @@
+flysystem:
+    storages:
+        # Storage for temporary files
+        tmp.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/var/storage/tmp'
+
+        # Permanent storage
+        permanent.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/var/storage/permanent-storage'

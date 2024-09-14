@@ -1,0 +1,26 @@
+<div {{ attributes }}>
+    <div>
+        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">
+            Select a file
+        </label>
+
+        <twig:FilePond property="file"/>
+    </div>
+
+    <div>
+        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">
+            Select another file
+        </label>
+
+        <twig:FilePond property="fileTwo"/>
+    </div>
+
+    <button
+        data-action="live#action"
+        data-live-action-param="submit"
+        type="button"
+        class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+    >
+        Submit
+    </button>
+</div>

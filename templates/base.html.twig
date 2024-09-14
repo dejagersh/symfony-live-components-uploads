@@ -10,8 +10,12 @@
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
+    <div class="max-w-xl mx-auto mt-[300px]">
         {% block body %}{% endblock %}
+    </div>
     </body>
 </html>
