@@ -1,0 +1,20 @@
+<div {{ attributes }}>
+    <input type="file" name="my_file"/>
+
+    <button
+        data-action="live#action"
+        data-live-action-param="files|uploadFile"
+    >
+        Send
+    </button>
+
+    {{ fileName }}
+
+    <button
+        type="submit"
+        data-action="live#action"
+        data-live-action-param="submit"
+    >
+        Submit
+    </button>
+</div>
