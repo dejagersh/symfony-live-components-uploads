@@ -10,7 +10,6 @@ class FileHydrationExtension implements HydrationExtensionInterface
 {
     public function __construct(private FilesystemOperator $tmpStorage)
     {
-
     }
 
     public function supports(string $className): bool
@@ -25,6 +24,8 @@ class FileHydrationExtension implements HydrationExtensionInterface
 
     public function dehydrate(object $object): mixed
     {
+        assert($object instanceof TemporaryFile);
+
         return [
             'filename' => $object->getFilename()
         ];

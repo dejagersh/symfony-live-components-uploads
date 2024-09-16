@@ -28,4 +28,8 @@ return [
     'filepond' => [
         'version' => '4.31.3',
     ],
+    'filepond/dist/filepond.css' => [
+        'version' => '4.31.3',
+        'type' => 'css',
+    ],
 ];

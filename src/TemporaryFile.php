@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Helpers\Str;
 use League\Flysystem\FilesystemOperator;
+use Symfony\Component\Mime\MimeTypes;
 
 class TemporaryFile
 {
@@ -15,14 +17,21 @@ class TemporaryFile
         return $this->filename;
     }
 
-    public function move(FilesystemOperator $targetStorage): void
+    public function move(FilesystemOperator $targetStorage): string
     {
+        $mimeType = $this->tmpStorage->mimeType($this->getFilename());
+        $extension = MimeTypes::getDefault()->getExtensions($mimeType)[0];
+
+        $targetPath = Str::random(40) . '.' . $extension;
+
         $targetStorage->writeStream(
-            $this->getFilename(),
+            $targetPath,
             $this->tmpStorage->readStream($this->getFilename()),
         );
 
         $this->tmpStorage->delete($this->getFilename());
+
+        return $targetPath;
     }
 
     public function getClientOriginalName(): string

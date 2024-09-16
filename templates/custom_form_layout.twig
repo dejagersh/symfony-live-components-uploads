@@ -1,0 +1,14 @@
+{% block filepond_widget %}
+    <div {{ stimulus_controller('filepond-form', { live: false}) }}>
+        <input type="file" {{ block('widget_attributes') }}/>
+    </div>
+{% endblock %}
+
+{% block filepond_live_widget %}
+    <div
+        data-live-ignore
+        {{ stimulus_controller('filepond-form', { fieldName: 'file', live: form.vars.live }) }}
+    >
+        <input type="file" {{ block('widget_attributes') }}/>
+    </div>
+{% endblock %}

@@ -9,15 +9,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 
-trait WithFileUploads
+trait ComponentWithLiveUploads
 {
     #[LiveAction]
-    public function _uploadFile(#[LiveArg] string $propertyName, Request $request, FilesystemOperator $tmpStorage): void
+    public function _uploadFile(#[LiveArg] string $fieldName, Request $request, FilesystemOperator $tmpStorage): void
     {
         /** @var UploadedFile $file */
-        $file = $request->files->get($propertyName);
+        $file = $request->files->get($fieldName);
 
         if (!$file) {
+            dd('What!');
             return;
         }
 
@@ -34,23 +35,13 @@ trait WithFileUploads
             fclose($stream);
         }
 
-        /**
-         * Note to self: might be dangerous to write to any $this->${property} directly.
-         * I think Livewire solves this by setting through `app('livewire')->updateProperty($this, $name, $file);
-         */
-        $this->$propertyName = new TemporaryFile($fileName, $tmpStorage);
+        $this->formValues[$fieldName] = $fileName;
     }
 
     #[LiveAction]
-    public function _deleteFile(#[LiveArg] string $propertyName, FilesystemOperator $tmpStorage): void
+    public function _deleteFile(#[LiveArg] string $fieldName, FilesystemOperator $tmpStorage): void
     {
-        if (!$this->$propertyName) {
-            return;
-        }
-
-        $tmpStorage->delete($this->file->getFilename());
-
-        $this->$propertyName = null;
+        // todo: implement this
     }
 
     /**

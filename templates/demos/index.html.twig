@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="space-y-5">
+        <a href="{{ url('simple_live_component') }}" class="underline block">
+            Simple Live Component
+        </a>
+
+        <a href="{{ url('simple_form') }}" class="underline block">
+            Simple Form
+        </a>
+
+        <a href="{{ url('live_form') }}" class="underline block">
+            Live form
+        </a>
+    </div>
+{% endblock %}
